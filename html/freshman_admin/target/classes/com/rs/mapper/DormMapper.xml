@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rs.dao.DormDao">
+    <select id="queryAllDorm" resultType="com.rs.entity.Dorm">
+        select dorm_id as dorm,classes_id as classesId,classes,dorm_number as dormNumber,sex,cost from dorm;
+    </select>
+
+    <select id="queryDormByClassesId" resultType="com.rs.entity.Dorm" parameterType="String">
+        select dorm_id as dorm,classes_id as classesId,classes,dorm_number as dormNumber,sex,cost from dorm where classes_id=#{classesId};
+    </select>
+
+    <select id="queryDormByDormId" resultType="com.rs.entity.Dorm" parameterType="String">
+        select dorm_id as dorm,classes_id as classesId,classes,dorm_number as dormNumber,sex,cost from dorm where dorm_id=#{dormId};
+    </select>
+
+    <update id="addPeople" parameterType="String">
+        update dorm set dorm_number=#{dorm_number}+1 where dorm_id=#{dormId};
+    </update>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rs.dao.StudentDao">
+    <select id="queryStudentById" resultType="com.rs.entity.Student" parameterType="String">
+        select stu_id as stuId, name,sex,college_name as collegeName,classes_id as classesId,classes,sign_in as signIn,dorm_id as dormId,tuition,pay_tuition as payTuition from student where stu_id=#{stuId};
+    </select>
+
+    <update id="updateStudent" parameterType="com.rs.entity.Student">
+        update  student set name=#{name},sex=#{sex},college_name=#{collegeName},classes_id=#{classesId},classes=#{classes},sign_in=#{signIn},dorm_id=#{dormId},tuition=#{tuition},pay_tuition=#{payTuition} where stu_id=#{stuId};
+    </update>
+
+    <insert id="saveStudent" parameterType="com.rs.entity.Student">
+        insert into student (stu_id, name, sex, college_name,classes_id, classes,sign_in,dorm_id,tuition,pay_tuition) VALUES (#{stuId},#{name},#{sex},#{collegeName},#{classesId},#{classes},#{signIn},#{dormId},#{tuition},#{payTuition});
+    </insert>
+
+    <delete id="deleteStudent" parameterType="String">
+        delete from student where stu_id=#{stuId};
+    </delete>
+
+    <select id="queryStudentByCollegeName" resultType="com.rs.entity.Student" parameterType="String">
+        select stu_id as stuId,name,sex,college_name as collegeName,classes_id as classId,classes,sign_in as signIn,dorm_id as dormId,tuition,pay_tuition as payTuition from student where college_name=#{college_name};
+    </select>
+
+    <select id="queryStudentByClasses" resultType="com.rs.entity.Student" parameterType="String">
+        select stu_id as stuId,name,sex,college_name as collegeName,classes_id as classesId,classes,sign_in as signId,dorm_id as dormId,tuition,pay_tuition as payTuition from student where college_name=#{college_name} and classes= #{classes};
+    </select>
+
+    <select id="queryStudentByDormId" resultType="com.rs.entity.Student" parameterType="String">
+        select stu_id as stuId,name,sex,college_name as collegeName,classes_id as classesId,classes,sign_in as signId,dorm_id as dormId,tuition,pay_tuition as payTuition from student where dorm_id=#{dormId};
+    </select>
+</mapper>

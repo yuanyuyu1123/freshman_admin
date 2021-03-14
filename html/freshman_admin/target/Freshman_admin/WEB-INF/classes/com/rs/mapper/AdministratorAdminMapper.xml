@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rs.dao.AdministratorAdminDao">
+    <select id="queryAdministratorAdmin" parameterType="String" resultType="com.rs.entity.AdministratorAdmin">
+        select admin_id as adminId,password,mail,salt,state from administrator_admin where admin_id=#{adminId};
+    </select>
+
+    <update id="updateAdministratorAdmin" parameterType="com.rs.entity.AdministratorAdmin">
+        update administrator_admin set password=#{password},mail=#{mail}salt=#{salt},state=#{state} where admin_id=#{adminId};
+    </update>
+
+    <insert id="saveAdministratorAdmin" parameterType="com.rs.entity.AdministratorAdmin">
+        insert into administrator_admin (admin_id, password,mail,salt,state)VALUES (#{adminId},#{password},#{salt},#{state});
+    </insert>
+
+    <delete id="deleteAdministratorPasswordById" parameterType="String">
+        delete from administrator_admin where admin_id=#{stuId};
+    </delete>
+</mapper>

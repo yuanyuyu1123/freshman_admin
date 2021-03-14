@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rs.dao.ClassesDao">
+    <select id="queryAllClasses" resultType="com.rs.entity.Classes">
+        select classes_id as classesId,college_name as collegeName,classes_number as classesNumber,major,major_tuition as majorTuition from classes;
+    </select>
+
+    <select id="queryClassesByClassesId" resultType="com.rs.entity.Classes" parameterType="String">
+        select classes_id as classesId,college_name as collegeName,classes_number as classesNumber,major,major_tuition as majorTuition from classes where classes_id=#{classesId};
+    </select>
+
+    <select id="queryClassesByCollegeName" resultType="java.lang.String" parameterType="String">
+        select classes_id as classesId from classes where college_name=#{collegeName};
+    </select>
+</mapper>

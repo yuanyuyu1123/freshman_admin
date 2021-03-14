@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rs.dao.StudentAdminDao">
+    <select id="queryStudentAdmin" parameterType="String" resultType="com.rs.entity.StudentAdmin">
+        select stu_id as stuId,password,salt,state from student_admin where stu_id=#{stuId};
+    </select>
+
+    <update id="updateStudentAdmin" parameterType="com.rs.entity.StudentAdmin">
+        update student_admin set password=#{password},salt=#{salt},state=#{state} where stu_id=#{stuId};
+    </update>
+
+    <insert id="saveStudentAdmin" parameterType="com.rs.entity.StudentAdmin">
+        insert into student_admin (stu_id, password,salt,state) VALUES (#{stuId},#{password},#{salt},#{state});
+    </insert>
+
+    <delete id="deleteStudentPasswordById" parameterType="String">
+        delete FROM student_admin where stu_id=#{stuId};
+    </delete>
+</mapper>
